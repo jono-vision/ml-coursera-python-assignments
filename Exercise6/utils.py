@@ -331,8 +331,11 @@ def getVocabList():
 
     :return:
     """
-    vocabList = np.genfromtxt(join('Data', 'vocab.txt'), dtype=object)
-    return list(vocabList[:, 1].astype(str))
+    import pandas as pd
+    df = pd.read_csv('Data/vocab.txt', sep='\t',header=None)
+    vocab = list(df.iloc[:, 1])
+    
+    return vocab
 
 
 class PorterStemmer:
